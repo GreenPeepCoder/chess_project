@@ -1,4 +1,4 @@
-require_relative "piece"
+require_relative "pieces"
 
 
 class Board
@@ -8,6 +8,7 @@ class Board
     end
 
     def [](pos)
+        @rows[pos]
     end
 
     def []=(pos, val)
@@ -44,5 +45,6 @@ class Board
 
     def populate_board
         # populate a default 8x8 chess board grid
+        @rows = Array.new(8){Array.new(8, sentinel)}
     end
 end
