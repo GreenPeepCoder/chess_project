@@ -44,7 +44,7 @@ class Board
 
     private
 
-    def populate_board
+    def populate_board(true)
         # populate a default 8x8 chess board grid
         @rows = Array.new(8){Array.new(8, sentinel)}
     end
