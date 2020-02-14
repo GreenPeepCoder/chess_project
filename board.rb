@@ -2,8 +2,9 @@ require_relative "piece"
 
 
 class Board
-    def initialize
-        @grid = populate_board
+    def initialize(fill_board = true)
+        @sentinel = NullPiece.instance
+        populate_board(fill_board)
     end
 
     def [](pos)
