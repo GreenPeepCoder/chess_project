@@ -4,7 +4,7 @@ require_relative "pieces"
 class Board
     def initialize(fill_board = true)
         @sentinel = NullPiece.instance
-        populate_board(fill_board)
+        populate_board
     end
 
     def [](pos)
@@ -43,8 +43,9 @@ class Board
     end
 
     private
-
-    def populate_board(true)
+    attr_reader :sentinel
+    
+    def populate_board
         # populate a default 8x8 chess board grid
         @rows = Array.new(8){Array.new(8, sentinel)}
     end
