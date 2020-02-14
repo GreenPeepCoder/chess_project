@@ -9,8 +9,3 @@ class Piece
     end
 end
 
-class NullPiece < Piece
-    def initialize
-        super("NullPiece")
-    end
-end
