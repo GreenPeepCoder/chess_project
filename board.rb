@@ -2,13 +2,16 @@ require_relative "pieces"
 
 
 class Board
+
+    attr_reader :rows
+
     def initialize(fill_board = true)
         @sentinel = NullPiece.instance
         populate_board
     end
 
     def [](pos)
-        @rows[pos]
+        @rows[pos.first][pos.last]
     end
 
     def []=(pos, val)
@@ -18,6 +21,7 @@ class Board
     end
 
     def valid_pos?(pos)
+        raise error if pos.is_a?(Array) == false || pos.length != 2
         pos.all? {|coord| coord.between?(0,7)}
     end
     
