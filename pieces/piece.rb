@@ -26,6 +26,10 @@ class Piece
     def symbol
     end
 
+    def inspect
+        symbol.inspect
+    end
+
     private
 
     def move_into_check?(end_pos)
