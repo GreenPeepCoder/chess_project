@@ -51,24 +51,41 @@ class Board
     end
 
     def checkmate?(color)
+        return false unless in_check?(color)
+
+        pieces.select { |p| p.color == color}.all? do |piece|
+            piece.valid_moves.empty?
+        end
     end
 
     def in_check?(color)
+        king_pos = find_king(color).pos
+        pieces.any? do |p|
+            p.color != color && p.moves.include?(king_pos)
+        end
     end
 
     def find_king(color)
     end
 
     def pieces
+        @rows.flatten.reject(&:empty?)
     end
 
     def dup
+        new_board = Board.new(false)
+
+        pieces.each do |piece|
+            piece.class.new(piece.color, new_board, piece.pos)
+        end
+
+        new_board
     end
 
     def move_piece!(start_pos, end_pos)
         # all checks have already been made
         piece = self[start_pos]
-        # raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
+        raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
 
         self[end_pos] = piece
         self[start_pos] = sentinel
@@ -94,6 +111,11 @@ class Board
     def fill_pawn_row(color)
         i = color == :white ? 6 : 1
         8.times { |j| Pawn.new(color, self, [i,j])}
+    end
+
+    def find_king(color)
+        king_pos = pieces.find { |p| p.color == color && p.is_a?(king)}
+        king_pos || (raise 'king not found')
     end
 
     def populate_board(fill_board)
