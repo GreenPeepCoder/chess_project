@@ -22,6 +22,7 @@ class Board
 
     def move_piece(color, start_pos, end_pos)
         raise 'start position is empty' if empty?(start_pos)
+        raise 'end position is empty' if empty?(end_pos)
 
         piece = self[start_pos]
         if piece.color != color
@@ -32,7 +33,7 @@ class Board
             raise 'You cannot move into check'
         end
 
-        move_piece!(color, start_pos, end_pos)
+        move_piece!(start_pos, end_pos)
     end
 
     def valid_pos?(pos)
@@ -64,10 +65,10 @@ class Board
     def dup
     end
 
-    def move_piece!(color, start_pos, end_pos)
+    def move_piece!(start_pos, end_pos)
         # all checks have already been made
         piece = self[start_pos]
-        raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
+        # raise 'piece cannot move like that' unless piece.moves.include?(end_pos)
 
         self[end_pos] = piece
         self[start_pos] = sentinel
