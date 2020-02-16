@@ -11,10 +11,13 @@ class Board
     end
 
     def [](pos)
+        raise 'invalid pos' unless valid_pos?(pos)
         @rows[pos.first][pos.last]
     end
-
+    
     def []=(pos, val)
+        raise 'invalid pos' unless valid_pos?(pos)
+        @rows[pos.first][pos.last] = val
     end
 
     def move_piece(color, start_pos, end_pos)
@@ -24,8 +27,14 @@ class Board
         raise error if pos.is_a?(Array) == false || pos.length != 2
         pos.all? {|coord| coord.between?(0,7)}
     end
+
+    def empty?(pos)
+        self[pos].empty?
+    end
     
     def add_piece(piece, pos)
+        raise 'position not empty' unless empty?(pos)
+        self[pos] = piece
     end
 
     def checkmate?(color)
