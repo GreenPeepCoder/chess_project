@@ -1,4 +1,5 @@
 require_relative "piece"
+require_relative "slideable"
 
 class Bishop < Piece
     def symbol
@@ -8,5 +9,6 @@ class Bishop < Piece
     protected
 
     def move_dirs
+        diagonal_dirs
     end
 end
