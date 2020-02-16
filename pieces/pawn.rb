@@ -33,5 +33,16 @@ class Pawn < Piece
     end
 
     def side_attacks
+        i, j = pos
+
+        side_moves = [[i + forward_dir, j-1], [i + forward_dir, j+1]]
+
+        side_moves.select do |new_pos|
+            next false unless board.valid_pos?(new_pos)
+            next false if board.empty?(new_pos)
+
+            threatened_piece = board[new_pos]
+            threatened_piece && threatened_piece.color != color
+        end
     end
 end
