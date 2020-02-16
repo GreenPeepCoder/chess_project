@@ -22,8 +22,9 @@ class Board
 
     def move_piece(color, start_pos, end_pos)
         raise 'start position is empty' if empty?(start_pos)
-        raise 'end position is empty' if empty?(end_pos)
-
+        if !empty?(end_pos) && self[start_pos].color == self[end_pos].color
+            raise 'end position is occupied by your own piece' 
+        end
         piece = self[start_pos]
         if piece.color != color
             raise 'You must move your own piece'
