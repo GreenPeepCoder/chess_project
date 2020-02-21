@@ -88,5 +88,9 @@ class Cursor
   end
 
   def update_pos(diff)
+    new_x = @cursor_pos.first + diff.first
+    new_y = @cursor_pos.last + diff.last
+    new_pos = [new_x, new_y]
+    @cursor_pos = new_pos if @board.valid_pos?(new_pos)
   end
 end
