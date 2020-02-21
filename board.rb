@@ -116,7 +116,7 @@ class Board
     end
 
     def find_king(color)
-        king_pos = pieces.find { |p| p.color == color && p.is_a?(king)}
+        king_pos = pieces.find { |p| p.color == color && p.is_a?(King)}
         king_pos || (raise 'king not found')
     end
 
