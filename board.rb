@@ -74,6 +74,7 @@ class Board
     end
 
     def dup
+        # return a copy of this board, including the pieces in their curr pos
         new_board = Board.new(false)
 
         pieces.each do |piece|
