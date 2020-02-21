@@ -12,7 +12,9 @@ class Display
     end
 
     def colors_for(i, j)
-        if cursor.cursor_pos == [i,j]
+        if cursor.cursor_pos == [i,j] && cursor.selected
+            bg = :red
+        elsif cursor.cursor_pos == [i,j]
             bg = :light_green
         elsif (i+j).odd?
             bg = :light_blue
@@ -42,6 +44,7 @@ class Display
     end
 
     def test
+        # method to see if the cursor moves around the board as expected
         while true
             self.render
             @cursor.get_input
