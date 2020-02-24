@@ -124,8 +124,7 @@ class Board
         # populate a default 8x8 chess board grid
         @rows = Array.new(8){Array.new(8, sentinel)}
         return unless fill_board
-        possible_colors = %i(white black)
-        possible_colors.each do |color|
+        %i(white black).each do |color|
             fill_back_row(color)
             fill_pawn_row(color)
         end

@@ -32,6 +32,10 @@ class Game
         nil
     end
 
+    def inspect
+        display.render.inspect
+    end
+
     private
 
     def notify_players
