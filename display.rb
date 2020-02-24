@@ -37,10 +37,26 @@ class Display
         end
     end
 
+    def reset!
+        @notifications.delete(:error)
+    end
+
+    def uncheck!
+        @notifications.delete(:check)
+    end
+
+    def set_check!
+        @notifications[:check] = "Check!"
+    end
+
     def render
         system ("clear")
         puts "Arrow keys, WASD, or vim to move, space or enter to confirm"
         build_grid.each { |row| puts row.join}
+
+        @notifications.each do |_key, val|
+            puts val
+        end
     end
 
 end
