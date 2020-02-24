@@ -43,12 +43,4 @@ class Display
         build_grid.each { |row| puts row.join}
     end
 
-    def test_cursor
-        # method to see if the cursor moves around the board as expected
-        while true
-            self.render
-            @cursor.get_input
-        end
-    end
-
 end
