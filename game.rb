@@ -22,7 +22,7 @@ class Game
 
                 swap_turn!
             rescue => exception
-                exception.message
+                @display.notifications[:error] = exception.message
                 retry
             end
         end
