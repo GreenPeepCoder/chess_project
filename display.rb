@@ -3,11 +3,12 @@ require_relative "cursor"
 
 class Display
 
-    attr_reader :board, :cursor
+    attr_reader :board, :cursor, :notifications
 
     def initialize(board)
         @board = board
         @cursor = Cursor.new([0, 0], board)
+        @notifications = Hash.new
     end
 
     def colors_for(i, j)
